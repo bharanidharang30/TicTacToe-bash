@@ -13,19 +13,20 @@ bool draw = false;
 //Function to show the current status of the gaming board
 
 void display_board(){
-    //Rander Game Board LAYOUT
+    //Render Game Board LAYOUT
     if (system("CLS")) system("clear");
-
+    cout<<"\t\t\tT I C K -- T A C -- T O E -- G A M E\t\t\t";
+    cout<<"\n\t\t\t\tFOR 2 PLAYERS\n\t\t\t";
     cout<<"PLAYER - 1 [X]\t PLAYER - 2 [O]\n\n";
-    cout<<"\t\t     |     |     \n";
-    cout<<"\t\t  "<<board[0][0]<<"  |  "<<board[0][1]<<"  |  "<<board[0][2]<<" \n";
-    cout<<"\t\t_____|_____|_____\n";
-    cout<<"\t\t     |     |     \n";
-    cout<<"\t\t  "<<board[1][0]<<"  |  "<<board[1][1]<<"  |  "<<board[1][2]<<" \n";
-    cout<<"\t\t_____|_____|_____\n";
-    cout<<"\t\t     |     |     \n";
-    cout<<"\t\t  "<<board[2][0]<<"  |  "<<board[2][1]<<"  |  "<<board[2][2]<<" \n";
-    cout<<"\t\t     |     |     \n";
+    cout<<"\t\t\t\t     |     |     \n";
+    cout<<"\t\t\t\t  "<<board[0][0]<<"  |  "<<board[0][1]<<"  |  "<<board[0][2]<<" \n";
+    cout<<"\t\t\t\t_____|_____|_____\n";
+    cout<<"\t\t\t\t     |     |     \n";
+    cout<<"\t\t\t\t  "<<board[1][0]<<"  |  "<<board[1][1]<<"  |  "<<board[1][2]<<" \n";
+    cout<<"\t\t\t\t_____|_____|_____\n";
+    cout<<"\t\t\t\t     |     |     \n";
+    cout<<"\t\t\t\t  "<<board[2][0]<<"  |  "<<board[2][1]<<"  |  "<<board[2][2]<<" \n";
+    cout<<"\t\t\t\t     |     |     \n";
 }
 
 //Function to get the player input and update the board
@@ -77,6 +78,17 @@ void player_turn(){
     display_board();
 }
 
+void again(){
+    board[0][0]='1';
+    board[0][1]='2';
+    board[0][2]='3';
+    board[1][0]='4';
+    board[1][1]='5';
+    board[1][2]='6';
+    board[2][0]='7';
+    board[2][1]='8';
+    board[2][2]='9';
+}
 //Function to get the game status e.g. GAME WON, GAME DRAW GAME IN CONTINUE MODE
 
 bool gameover(){
@@ -105,20 +117,32 @@ bool gameover(){
 
 int main()
 {
-    cout<<"\t\t\tT I C K -- T A C -- T O E -- G A M E\t\t\t";
-    cout<<"\n\t\t\t\tFOR 2 PLAYERS\n\t\t\t";
+    jump:
     while(gameover()){
         display_board();
         player_turn();
         gameover();
     }
     if(turn == 'X' && draw == false){
-        cout<<"\n\nCongratulations!Player with 'X' has won the game";
+        cout<<"\n\nCongratulations!Player with 'O' has won the game";
+        system("pause");
     }
     else if(turn == 'O' && draw == false){
-        cout<<"\n\nCongratulations!Player with 'O' has won the game";
+        cout<<"\n\nCongratulations!Player with 'X' has won the game";
+        system("pause");
     }
-    else
+    else{
     cout<<"\n\nGAME DRAW!!!\n\n";
+    system("pause");
+    }
+    cout<<"\nEnter 1 to play again  :  "<<endl;
+    int playagain;
+    cin>>playagain;
+    if(playagain==1){
+        again();
+        goto jump;
+    }
+    else{
+        exit;
+    }
 }
-
